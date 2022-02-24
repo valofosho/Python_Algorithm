@@ -1,0 +1,37 @@
+BOJ#1931
+++Greedy
+++ASP
+
+ASP에 대한 정리
+Activity Selection Problem (ASP)
+aka. Interval Maximization Problem (IMP)
+Greedy Algorithm의 대표적인 예시로
+St와 Ft가 존재하는 move 가 대표적
+Interval Scheduling의 대표적 예시
+
+ASP 알고리즘의 pseudo-code
+
+Greedy-iterative-Activity-Selector (A, s, f):
+
+	Sort A by finish times stored in f
+	S={A[1]}
+	k=1
+	n=len(A)
+
+	for i 2 to n:
+		if s[i] >= f[k]:
+		S= S U {A[i]}
+		k=i
+	return S
+
+A=배열, s=St 배열, f=Ft 배열
+
+Solving algorithm
+1) Ft를 기준으로 Sorting (o)
+2) Ft가 같은 경우에만 St를 오름차수능로 정리
+3) St
+
+두 가지 key 값으로 list sorting하는 방법:
+list.sort(key=lambda x: x[~], x[~~])
+중요도 순서는 변수 입력 순서와 동일
+
