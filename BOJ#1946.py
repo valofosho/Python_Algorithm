@@ -9,7 +9,9 @@ for _ in range(T):
         a, b= map(int,input().split())
         Arr.append([a,b])
     Arr.sort()
+    max=Arr[0][1]
     for j in range(1,N):
-        if Arr[j][1]<Arr[j-1][1]:
+        if Arr[j][1]<max:
             count+=1
+            max=Arr[j][1]
     print(count)
