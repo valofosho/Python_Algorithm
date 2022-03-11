@@ -46,7 +46,7 @@ for i in range(T):
     arr=ast.literal_eval(arr)
     print(binding(arr,flow))
 """
-
+"""
 def deque_R(arr,Rn):
     if Rn%2 == 0:
         return arr
@@ -69,3 +69,28 @@ for i in range(T):
     print(binding(arr,flow))
 
 print(a)
+"""
+import ast
+import sys
+from _collections import deque
+input=sys.stdin.readline
+def binding(arr,flow):
+    for i in range(len(flow)):
+        if len(arr) !=0:
+            if flow[i] == "R":
+                arr.reverse()
+            elif flow[i] == "D":
+                arr.pop(0)
+        else:
+            return "error"
+    return (',').join(arr.split(','))
+T=int(input())
+for i in range(T):
+    arr=[]
+    flow=str(input())
+    n=input()
+    arr=input()
+    arr=ast.literal_eval(arr)
+    print(arr)
+    a = deque(arr)
+    print(binding(arr,flow))
