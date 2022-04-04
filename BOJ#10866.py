@@ -10,6 +10,7 @@ def pop_front(D):
         print(-1)
         return D
     else:
+        print(D[0])
         D.popleft()
         return D
 def pop_back(D):
@@ -17,6 +18,7 @@ def pop_back(D):
         print(-1)
         return D
     else:
+        print(D[-1])
         D.pop()
         return D
 def d_size(D):
@@ -44,37 +46,28 @@ def back(D):
         print(D[-1])
         return D
 
-
-
-
 import sys
 from collections import deque
-input=sys.stdin.readline
-N=int(input())
-deq=deque()
+input = sys.stdin.readline
+N = int(input())
+deq = deque()
 for i in range(N):
-    op=input().split()
+    op = input().split()
     if "push_front" in op:
-        x=op[1]
-        deq=push_front(deq,x)
+        x = op[1]
+        deq = push_front(deq,x)
     elif "push_back" in op:
-        x=op[1]
+        x = op[1]
         deq=push_back(deq,x)
     elif "pop_front" in op:
-        deq=pop_front(deq,x)
-
-
-        op = input().split()
-        if "push" in op:
-            x = op[1]
-            q = q_push(q, x)
-        elif "pop" in op:
-            q = q_pop(q)
-        elif "size" in op:
-            q = q_size(q)
-        elif "empty" in op:
-            q = q_empty(q)
-        elif "front" in op:
-            q = q_front(q)
-        elif "back" in op:
-            q = q_back(q)
+        deq = pop_front(deq)
+    elif "pop_back" in op:
+        deq = pop_back(deq)
+    elif "size" in op:
+        deq = d_size(deq)
+    elif "empty" in op:
+        deq = d_empty(deq)
+    elif "front" in op:
+        deq = front(deq)
+    elif "back" in op:
+        deq = back(deq)
