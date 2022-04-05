@@ -38,7 +38,7 @@ for i in range(cnt):
     elif "B" in order:
         ls = B(ls,cursor)
     print(ls,cursor)
-print(ls)"""
+print(ls)
 
 class Node(object):
     def __init__(self, data):
@@ -48,7 +48,13 @@ class SingleLinkedList(object):
     def __init__(self):
         self.head = None
         self.count = 0
-
+    def listSize(self):
+        return self.size
+    def is_empty(self):
+        if self.size !=0:
+            return False
+        else:
+            return True
     def append(self, node):
         if self.head == None:
             self.head = node
@@ -57,4 +63,51 @@ class SingleLinkedList(object):
             while cur.next != None:
                 cur = cur. next
             cur.next = node
-    
+"""
+
+class Node(object):
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
+
+    def push(self, new_data):
+        new_node = Node(new_data)
+        new_node.next=self.head
+        self.head=new_node
+
+    def insertAfter(self, new_data, prev_node):
+        if prev_node is None:
+            print("The given prev_node must in Linked List.")
+            return
+        else:
+            new_node = Node(new_data)
+            new_node.next = prev_node.next
+            prev_node.next=new_node
+
+    def append(self, new_data):
+        new_node = Node(new_data)
+        if self.head is None:
+            self.head = new_node
+            return
+        last = self.head
+        while (last.next):
+            last=last.next
+        last.next = new_node
+
+    def printlist(self):
+        temp = self.head
+        while (temp):
+            print(temp.data)
+            temp.next
+
+for i in range(1):
+    print(i)
+
+
+
+
+
