@@ -1,20 +1,79 @@
+"""def L(cursor):
+    if cursor == -(len(ls)):
+        return cursor
+    else:
+        cursor-=1
+        return cursor
+def D(cursor):
+    if cursor == -1:
+        return cursor
+    else:
+        cursor+=1
+        return cursor
+def B(ls,cursor):
+    print(-len(ls))
+    if cursor == -(len(ls)):
+        return ls
+    else:
+        ls.remove(ls[cursor])
+        return ls
+def P(ls, x, cursor):
+    if cursor == -1:
+        ls.append(x)
+    else:
+        ls.insert(cursor+1,x)
+    return ls
+
+ls=['a', 'b', 'c']
+cursor=-1
+cnt=int(input())
+for i in range(cnt):
+    order=input().split()
+    if "P" in order:
+        ls=P(ls, order[-1], cursor)
+    elif "D" in order:
+        cursor=D(cursor)
+    elif "L" in order:
+        cursor=L(cursor)
+    elif "B" in order:
+        ls = B(ls,cursor)
+    print(ls,cursor)
+print(ls)
 
 class Node(object):
-    def __init__(self, next = None, prev = None, data = None, curs = None):
-        self.next = next
-        self.prev = prev
+    def __init__(self, data):
         self.data = data
-        self.curs = curs
-class DoublyLinkedList(object):
+        self.next = None
+class SingleLinkedList(object):
     def __init__(self):
         self.head = None
+        self.count = 0
+    def listSize(self):
+        return self.size
+    def is_empty(self):
+        if self.size !=0:
+            return False
+        else:
+            return True
+    def append(self, node):
+        if self.head == None:
+            self.head = node
+        else:
+            cur = self.head
+            while cur.next != None:
+                cur = cur. next
+            cur.next = node
+"""
 
-    def P(self, curs, new_data):
-        if curs == self.head:
+class Node(object):
+    def __init__(self,data):
+        self.data = data
+        self.next = None
 
-
-
-
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
+        self.last = None
     def push(self, new_data):
         new_node = Node(new_data)
         new_node.next=self.head
@@ -108,4 +167,4 @@ for i in range(num):
     # 2) None 을 가르킬 때 까지 while문 할당
     # 3) cur 이 None 을 가르키는 의미는 List 의 마지막 값에 도달했음을 의미
     #  각 연산 별 cursor 의 연산 행동
-    # 1) L: cursor의 prev 를 찾
+    # cursor의 위치를 앞 뒤로 변환해줘야 되기 때문에 double linked list 로 변환
