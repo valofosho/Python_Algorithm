@@ -1,33 +1,99 @@
-
 class Node(object):
-    def __init__(self, next = None, prev = None, data = None, curs = None):
-        self.next = next
-        self.prev = prev
+    def __init__(self, data):
         self.data = data
-        self.curs = curs
-class DoublyLinkedList(object):
+        self.next = None
+
+class LinkedList(object):
     def __init__(self):
         self.head = None
-
-    def P(self, curs, new_data):
-        if curs == self.head:
-
-
-
-
-    def push(self, new_data):
-        new_node = Node(new_data)
-        new_node.next=self.head
-        self.head=new_node
-
-    def insertAfter(self, new_data, prev_node):
-        if prev_node is None:
-            print("The given prev_node must in Linked List.")
-            return
+    def L(self, index_c):
+        # list 내에 값이 비어있는 경우
+        if self.head is None:
+            return index_c
+        # list 내에 값이 존재하는 경우
+        if index_c == 0 or index_c == -1 :
+            index_c = -1
+            return index_c
         else:
+            index_c -= 1
+            return index_c
+    def D(self, index_c, ls):
+        #List 내에 값이 비어있는 경우:
+        if self.head is None:
+            return index_c
+        # index_c가 리스트 마지막에 위치하는 경우:
+        if index_c == ls.getlength() - 1:
+            return index_c
+        else:
+            index_c += 1
+            return index_c
+
+    def P(self, index_c, new_data):
+        # 리스트가 비어있거나
+        # 커서가 맨 앞으로 위치하는 경우
+        if self.head is None:
             new_node = Node(new_data)
-            new_node.next = prev_node.next
-            prev_node.next=new_node
+            self.head = new_node
+            new_node.next = self.head
+            self.head = new_node
+            index_c += 1
+            return index_c
+        if index_c == -1:
+            new_node = Node(new_data)
+            self.head = new_node
+            new_node.next = self.head
+            self.head = new_node
+            index_c += 1
+            return index_c
+
+        index = 0
+        current = self.head
+        prev = self.head
+        temp = self.head
+
+        while (current is not None):
+            if index == (index_c + 1):
+                temp = current.next
+                break
+            prev = current
+            current = current.next
+            index += 1
+        print(index, index_c)
+        new_node = Node(new_data)
+        new_node.next =current.next
+        current.next = new_node
+        index_c += 1
+        return index_c
+
+    def B(self, index_c):
+        if self.head is None:
+            return
+        if index_c == 0:
+            self.head == self.head.next
+            return
+        index = 0
+        current =self.head
+        prev = self.head
+        temp = self.head
+        while current is not None:
+            if index == index_c:
+                temp = current.next
+                break
+            prev= current
+            current = current.next
+            index += 1
+        prev.next = temp
+        return
+
+    def getlength(self):
+        temp = self.head
+        count = 0
+        while temp:
+            count += 1
+            temp = temp.next
+        return count
+
+
 
     def append(self, new_data):
         new_node = Node(new_data)
@@ -35,52 +101,13 @@ class DoublyLinkedList(object):
             self.head = new_node
             return
         last = self.head
-        while (last.next):
-            last=last.next
+        while last.next:
+            last = last.next
         last.next = new_node
-
-    def deleteNode(self, key):
-        temp=self.head
-        if (temp is not None):
-            if (temp.data == key):
-                self.head = temp.next
-                temp = None
-                return
-        while (temp is not None):
-            if temp.data == key:
-                break
-            prev = temp
-            prev.next = temp.next
-        if (temp == None):
-            return
-        prev.next = temp.next
-        temp = None
-
-    def deletebyP(self, position):
-        if self.head is None:
-            return
-        if position == 0:
-            self.head = self.head.next
-            return self.head
-        index = 0
-        current = self.head
-        prev = self.head
-        temp = self.head
-        while current is not None:
-            if index == position:
-                temp = current.next
-                break
-            prev = current
-            current = current.next
-            index += 1
-        prev.next= temp
-        return prev
-
-
 
     def printlist(self):
         temp = self.head
-        while(temp):
+        while temp:
             print(temp.data)
             temp=temp.next
 
@@ -91,9 +118,19 @@ ms = str(input())
 for i in ms:
     ls.append(i)
 num = int(input())
-cur = ls
+index_c = ls.getlength() -1
+print(index_c)
 for i in range(num):
     order=input().split()
+    if order == "L":
+        index_c = ls.L(index_c)
+    elif order == "D":
+        index_c = ls.D(index_c, ls)
+    elif order == "B":
+        ls = ls.B(index_c)
+    elif "P" in order:
+        index_c = ls.P(index_c, order[1])
+ls.printlist()
 
     # Linked List 에서는 index를 사용할 수 없다.
     # P 관련 method
