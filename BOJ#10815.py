@@ -3,6 +3,7 @@ def check(arr, target, start, end):
     if start > end :
         return 0
     mid = (start + end) // 2
+    print(mid)
     if arr[mid] == target:
         return 1
     elif arr[mid] > target:
